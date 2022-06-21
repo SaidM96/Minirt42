@@ -6,50 +6,11 @@
 /*   By: smia <smia@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/20 03:35:29 by smia              #+#    #+#             */
-/*   Updated: 2022/06/21 04:21:41 by smia             ###   ########.fr       */
+/*   Updated: 2022/06/21 18:59:14 by smia             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
-
-void		ft_lstdel(t_objs **objs)
-{
-	t_objs	*temp;
-
-	if (!objs)
-		return ;
-	while (*objs)
-	{
-		temp = (*objs)->next;
-		free(*objs);
-		*objs = temp;
-	}
-	*objs = NULL;
-	return ;
-}
-
-void    free_all(t_scene *sc)
-{
-    ft_lstdel(&(sc->objs));
-    free(sc);
-}
-
-t_scene *alloc_scence(void)
-{
-    t_scene *sc;
-
-    sc = malloc((sizeof(t_scene)));
-    if (!sc)
-        return (NULL);
-	sc->objs = NULL;
-    sc->amb.count = 0;
-    sc->cam.count = 0;
-    sc->light.count = 0;
-	sc->up_vec.x = 0;
-	sc->up_vec.y = -1;
-	sc->up_vec.z = 0;
-    return (sc);
-}
 
 int check_file(int ac, char **av)
 {
@@ -88,7 +49,7 @@ int main (int ac, char **av)
     if (!sc)
         ft_err("allocation");
     parse(sc,fd);
-    ray_tracing();
+    // ray_tracing();
     free_all(sc);
     return 0;
 }

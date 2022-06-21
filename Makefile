@@ -1,5 +1,5 @@
 NAME=minirt
-CSRCS= main.c get_next_line.c ft_atof.c error.c parse_element.c parse.c split.c  vector.c
+CSRCS= main.c get_next_line.c allocation.c tools.c parse_element.c parse.c split.c  vector.c
 CFLAGS= -Wall -Wextra -Werror
 CC= gcc
 

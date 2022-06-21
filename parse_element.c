@@ -6,7 +6,7 @@
 /*   By: smia <smia@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/20 03:21:29 by smia              #+#    #+#             */
-/*   Updated: 2022/06/21 04:19:12 by smia             ###   ########.fr       */
+/*   Updated: 2022/06/21 17:25:26 by smia             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void    parse_ambient(t_scene *sc, char **tockens)
     if (sc->amb.count != 0)
         ft_err("too many ambiant");
     sc->amb.count++;
-    sc->amb.ratio = ft_atof(tockens[1]);
+    sc->amb.ratio = ft_atod(tockens[1]);
     if (sc->amb.ratio < 0 || sc->amb.ratio > 1)
         ft_err("enter ambient lighting ratio in range [0.0,1.0]");
     sc->amb.col = get_color(tockens[2]);
@@ -38,7 +38,7 @@ void    parse_camera(t_scene *sc,char **tockens)
         ft_err("invalid orientation camera");
     if (sc->cam.dir.x < -1 || sc->cam.dir.y < -1 || sc->cam.dir.z < -1)
         ft_err("invalid orientation camera");
-    sc->cam.fov = ft_atof(tockens[3]);
+    sc->cam.fov = ft_atod(tockens[3]);
     if (sc->cam.fov < 0 || sc->cam.fov > 180)
         ft_err("FOV  in range [0,180]");
 }
@@ -51,7 +51,7 @@ void    parse_light(t_scene *sc, char **tockens)
         ft_err("to many light !");
     sc->light.count++;
     sc->light.src = get_vec(tockens[1]);
-    sc->light.ratio = ft_atof(tockens[2]);
+    sc->light.ratio = ft_atod(tockens[2]);
     if (sc->light.ratio < 0 || sc->light.ratio > 1)
         ft_err("enter the light brightness ratio in range [0.0,1.0]");
 }
@@ -65,7 +65,7 @@ void    parse_sphere(t_scene *sc, char **tockens)
     obj = alloc_obj(&(sc->objs));
     obj->type = SP;
     obj->cen = get_vec(tockens[1]);
-    obj->p.x = ft_atof(tockens[2]);
+    obj->p.x = ft_atod(tockens[2]);
     if (obj->p.x <= 0)
         ft_err("invalid diameter sphere");
     obj->col = get_color(tockens[3]);
@@ -85,8 +85,8 @@ void    parse_cylinder(t_scene *sc, char **tockens)
         ft_err("invalid orientation cylinder");
     if (obj->dir.x < -1 || obj->dir.y < -1 || obj->dir.z < -1)
         ft_err("invalid orientation cylinder");
-    obj->p.x = ft_atof(tockens[3]);
-    obj->p.y = ft_atof(tockens[4]);
+    obj->p.x = ft_atod(tockens[3]);
+    obj->p.y = ft_atod(tockens[4]);
     if (obj->p.x <= 0 || obj->p.y <= 0)
         ft_err("invalid diameter cy");
     obj->col = get_color(tockens[5]);

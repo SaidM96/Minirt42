@@ -6,7 +6,7 @@
 /*   By: smia <smia@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/24 13:01:02 by smia              #+#    #+#             */
-/*   Updated: 2022/06/21 00:26:48 by smia             ###   ########.fr       */
+/*   Updated: 2022/06/21 18:59:23 by smia             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,6 @@
 # include <stdio.h>
 # include <fcntl.h>
 # include <math.h>
-# include <mlx.h>
 
 typedef struct  s_vec
 {
@@ -92,15 +91,30 @@ void    parse_ambient(t_scene *sc, char **tockens);
 // allocation
 t_scene *alloc_scence(void);
 t_objs  *alloc_obj(t_objs   **objs);
+void	t_lstdel(t_objs **objs);
+void    free_all(t_scene *sc);
 
-int	ft_strlen(const char *str);
+// tools
+int	    ft_strlen(const char *str);
 char	*gnl(int fd);
-double	ft_atof(char *str);
+double	ft_atod(const char *str);
+int	    ft_atoi(const char *str);
 char	**ft_split(const char *str, char c);
 void	free_split(char **s);
-void	init_vec(t_vec *v);
-t_vec   get_vec(char *s);
-t_vec   get_color(char *s);
+
+//vectors
+void	    init_vec(t_vec *v);
+t_vec       get_vec(char *s);
+t_vec       get_color(char *s);
+t_vec		get_normalized(t_vec v);
+void		normalize(t_vec *v);
+double		get_norm2(t_vec v);
+t_vec		sub_vec(t_vec u, t_vec v);
+t_vec		add_vec(t_vec u, t_vec v);
+t_vec	    mult_vec(t_vec v, double a);
+t_vec		vect_cross(t_vec u, t_vec v);
+double	    dot_product(t_vec u, t_vec v);
+
 
 
 #endif

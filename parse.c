@@ -6,7 +6,7 @@
 /*   By: smia <smia@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/20 03:22:01 by smia              #+#    #+#             */
-/*   Updated: 2022/06/21 04:05:54 by smia             ###   ########.fr       */
+/*   Updated: 2022/06/21 17:32:44 by smia             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ t_vec   get_color(char *s)
     params = ft_split(s, ',');
     if (!params || !params[1] || !params[1] || params[3])
         ft_err("invalid color!");
-    cord = (t_vec){(int)ft_atof(params[0]), (int)ft_atof(params[1]), (int)ft_atof(params[2])};
+    cord = (t_vec){ft_atoi(params[0]), ft_atoi(params[1]), ft_atoi(params[2])};
     if (cord.x > 255 || cord.y > 255 || cord.z > 255)
         ft_err("invalid color");
     if (cord.x < 0 || cord.y < 0 || cord.z < 0)
@@ -37,25 +37,9 @@ t_vec   get_vec(char *s)
     params = ft_split(s, ',');
     if (!params || !params[1] || !params[1] || params[3])
         ft_err("invalid coordinates");
-    cord = (t_vec){ft_atof(params[0]), ft_atof(params[1]), ft_atof(params[2])};
+    cord = (t_vec){ft_atod(params[0]), ft_atod(params[1]), ft_atod(params[2])};
     free_split(params);
-    return (cord);        
-}
-
-t_objs  *alloc_obj(t_objs   **objs)
-{
-    t_objs  *new_obj;
-
-    new_obj = malloc(sizeof(t_objs));
-    if (!new_obj)
-        return (NULL);
-    init_vec(&(new_obj->col));
-    init_vec(&(new_obj->cen));
-    init_vec(&(new_obj->dir));
-    init_vec(&(new_obj->p));
-    new_obj->next = *objs;
-    *objs = new_obj;
-    return (new_obj);
+    return (cord);
 }
 
 void    parse_line(char *id, char **tockens, t_scene *sc)
