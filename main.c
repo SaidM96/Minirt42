@@ -6,12 +6,33 @@
 /*   By: smia <smia@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/20 03:35:29 by smia              #+#    #+#             */
-/*   Updated: 2022/06/21 00:46:14 by smia             ###   ########.fr       */
+/*   Updated: 2022/06/21 03:14:47 by smia             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 
+void		ft_lstdel(t_objs **objs)
+{
+	t_objs	*temp;
+
+	if (!objs)
+		return ;
+	while (*objs)
+	{
+		temp = (*objs)->next;
+		free(*objs);
+		*objs = temp;
+	}
+	*objs = NULL;
+	return ;
+}
+
+void    free_all(t_scene *sc)
+{
+    ft_lstdel(&(sc->objs));
+    free(sc);
+}
 
 t_scene *alloc_scence(void)
 {
@@ -41,19 +62,19 @@ int check_file(int ac, char **av)
     if (!av[1])
         return (1);
     i = ft_strlen(av[1]);
-    if (i < 3)
+    if (i < 4)
         return (1);
     if (av[1][i - 1] == 't' || av[1][i - 2] == 'r' || av[1][i - 3] == '.')
     {
         fd = open(av[1], O_RDONLY);
         if (fd < 0)
             return (1);
-    }
     close(fd);
+    }
+    else
+        return (1);
     return (0);
 }
-
-
 
 int main (int ac, char **av)
 {
@@ -73,5 +94,6 @@ int main (int ac, char **av)
         printf("%d ||", sc->objs->type);
         sc->objs =  sc->objs->next;
     }
+    free_all(sc);
     return 0;
 }
