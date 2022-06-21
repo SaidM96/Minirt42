@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parse_element1.c                                   :+:      :+:    :+:   */
+/*   parse_element.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: smia <smia@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/20 03:21:29 by smia              #+#    #+#             */
-/*   Updated: 2022/06/21 00:26:34 by smia             ###   ########.fr       */
+/*   Updated: 2022/06/21 04:19:12 by smia             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,8 +34,13 @@ void    parse_camera(t_scene *sc,char **tockens)
     sc->cam.count++;
     sc->cam.cen = get_vec(tockens[1]);
     sc->cam.dir = get_vec(tockens[2]);
+    if (sc->cam.dir.x > 1 || sc->cam.dir.y > 1 || sc->cam.dir.z > 1)
+        ft_err("invalid orientation camera");
+    if (sc->cam.dir.x < -1 || sc->cam.dir.y < -1 || sc->cam.dir.z < -1)
+        ft_err("invalid orientation camera");
     sc->cam.fov = ft_atof(tockens[3]);
-    
+    if (sc->cam.fov < 0 || sc->cam.fov > 180)
+        ft_err("FOV  in range [0,180]");
 }
 
 void    parse_light(t_scene *sc, char **tockens)
@@ -61,8 +66,8 @@ void    parse_sphere(t_scene *sc, char **tockens)
     obj->type = SP;
     obj->cen = get_vec(tockens[1]);
     obj->p.x = ft_atof(tockens[2]);
-    // if (obj->p.x < 0)
-    //     ft_err("***")
+    if (obj->p.x <= 0)
+        ft_err("invalid diameter sphere");
     obj->col = get_color(tockens[3]);
 }
 
@@ -76,8 +81,14 @@ void    parse_cylinder(t_scene *sc, char **tockens)
     obj->type = CY;
     obj->cen = get_vec(tockens[1]);
     obj->dir = get_vec(tockens[2]);
+    if (obj->dir.x > 1 || obj->dir.y > 1 || obj->dir.z > 1)
+        ft_err("invalid orientation cylinder");
+    if (obj->dir.x < -1 || obj->dir.y < -1 || obj->dir.z < -1)
+        ft_err("invalid orientation cylinder");
     obj->p.x = ft_atof(tockens[3]);
     obj->p.y = ft_atof(tockens[4]);
+    if (obj->p.x <= 0 || obj->p.y <= 0)
+        ft_err("invalid diameter cy");
     obj->col = get_color(tockens[5]);
 }
 
@@ -91,5 +102,9 @@ void    parse_plane(t_scene *sc, char **tockens)
     obj->type = PL;
     obj->cen = get_vec(tockens[1]);
     obj->dir = get_vec(tockens[2]);
+    if (obj->dir.x > 1 || obj->dir.y > 1 || obj->dir.z > 1)
+        ft_err("invalid orientation plane");
+    if (obj->dir.x < -1 || obj->dir.y < -1 || obj->dir.z < -1)
+        ft_err("invalid orientation plane");
     obj->col = get_color(tockens[3]);
 }

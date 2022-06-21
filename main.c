@@ -6,7 +6,7 @@
 /*   By: smia <smia@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/20 03:35:29 by smia              #+#    #+#             */
-/*   Updated: 2022/06/21 03:14:47 by smia             ###   ########.fr       */
+/*   Updated: 2022/06/21 04:21:41 by smia             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,12 +88,7 @@ int main (int ac, char **av)
     if (!sc)
         ft_err("allocation");
     parse(sc,fd);
-    printf("%f   %f    %f \n",sc->amb.col.x, sc->amb.col.y, sc->amb.col.z);
-    while (sc->objs)
-    {
-        printf("%d ||", sc->objs->type);
-        sc->objs =  sc->objs->next;
-    }
+    ray_tracing();
     free_all(sc);
     return 0;
 }
