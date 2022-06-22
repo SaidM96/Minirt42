@@ -6,7 +6,7 @@
 /*   By: smia <smia@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/20 03:30:08 by smia              #+#    #+#             */
-/*   Updated: 2022/06/21 17:42:59 by smia             ###   ########.fr       */
+/*   Updated: 2022/06/22 04:47:46 by smia             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,6 +85,7 @@ static char	**ft_free(char **buf)
 	}
 	free(buf);
 	return (0);
+	
 }
 
 char	**ft_split(const char *str, char c)

@@ -6,7 +6,7 @@
 /*   By: smia <smia@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/20 03:35:29 by smia              #+#    #+#             */
-/*   Updated: 2022/06/21 18:59:14 by smia             ###   ########.fr       */
+/*   Updated: 2022/06/22 04:48:31 by smia             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ int check_file(int ac, char **av)
     else
         return (1);
     return (0);
+    
 }
 
 int main (int ac, char **av)

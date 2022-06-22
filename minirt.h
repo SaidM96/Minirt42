@@ -6,7 +6,7 @@
 /*   By: smia <smia@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/24 13:01:02 by smia              #+#    #+#             */
-/*   Updated: 2022/06/21 18:59:23 by smia             ###   ########.fr       */
+/*   Updated: 2022/06/22 04:47:21 by smia             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,6 @@ typedef struct  s_objs
 typedef struct s_scene
 {
     t_vec   col;
-    t_vec   up_vec;
     t_cam   cam;
     t_light light;
     t_amb   amb;
@@ -103,7 +102,7 @@ char	**ft_split(const char *str, char c);
 void	free_split(char **s);
 
 //vectors
-void	    init_vec(t_vec *v);
+void	    null_vec(t_vec *v);
 t_vec       get_vec(char *s);
 t_vec       get_color(char *s);
 t_vec		get_normalized(t_vec v);
