@@ -6,7 +6,7 @@
 /*   By: smia <smia@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/24 13:01:02 by smia              #+#    #+#             */
-/*   Updated: 2022/06/25 11:21:23 by smia             ###   ########.fr       */
+/*   Updated: 2022/06/25 22:23:37 by smia             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,7 @@ typedef struct s_amb
 
 typedef struct  s_objs
 {
-    int            type;
+    int             type;
     t_vec           cen;
     t_vec           dir;
     t_vec           p;
@@ -156,11 +156,5 @@ double	    get_angle_y(double x, double z, double angle);
 
 // Raytracing
 void    new_world(t_scene *sc);
-
-
-
-
-
-
 
 #endif
