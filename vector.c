@@ -6,7 +6,7 @@
 /*   By: smia <smia@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/24 10:38:51 by smia              #+#    #+#             */
-/*   Updated: 2022/06/22 04:47:10 by smia             ###   ########.fr       */
+/*   Updated: 2022/06/25 07:43:44 by smia             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,10 @@ t_vec		sub_vec(t_vec u, t_vec v)
 	w.z = u.z - v.z;
 	return (w);
 }
-
+double		module_v(t_vec	v)
+{
+	return (sqrt(pow(v.x, 2) + pow(v.y, 2) + pow(v.z, 2)));
+}
 double		get_norm2(t_vec v)
 {
 	double result;
@@ -69,7 +72,8 @@ double		get_norm2(t_vec v)
 	result = (v.x * v.x) + (v.y * v.y) + (v.z * v.z);
 	return (result);
 }
-	
+
+
 void		normalize(t_vec *v)
 {
 	double	norm;
