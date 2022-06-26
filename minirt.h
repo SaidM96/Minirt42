@@ -6,7 +6,7 @@
 /*   By: smia <smia@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/24 13:01:02 by smia              #+#    #+#             */
-/*   Updated: 2022/06/25 22:23:37 by smia             ###   ########.fr       */
+/*   Updated: 2022/06/26 01:46:50 by smia             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,6 +77,9 @@ typedef struct  s_objs
     int             type;
     t_vec           cen;
     t_vec           dir;
+    t_matrix        *m_trans;
+    t_vec       	o_c;
+	double	        z_o;
     t_vec           p;
     t_vec           col;
     t_vec           norm;

@@ -6,7 +6,7 @@
 /*   By: smia <smia@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/25 02:28:18 by smia              #+#    #+#             */
-/*   Updated: 2022/06/25 11:15:18 by smia             ###   ########.fr       */
+/*   Updated: 2022/06/26 01:16:22 by smia             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ void    calcul_Rx_Ry(t_vec v_dir, t_matrix *Rx, t_matrix *Ry)
     Rx->l2.a3 = -sin(b);
     Rx->l3.a2 = sin(b);
     Rx->l3.a3 = cos(b);
-    Ry->l4.a4 = 1;
+    Rx->l4.a4 = 1;
 }
 
 void    get_R_matrix(t_matrix *m, t_matrix *Rx, t_matrix *Ry)
