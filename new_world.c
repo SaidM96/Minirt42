@@ -6,7 +6,7 @@
 /*   By: smia <smia@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/25 02:36:43 by smia              #+#    #+#             */
-/*   Updated: 2022/06/26 02:01:41 by smia             ###   ########.fr       */
+/*   Updated: 2022/06/26 02:06:10 by smia             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ void	trans_vdir(t_vec *element, t_matrix *m)
 	t_vec	o;
 
 	o = *element;
-	update_cogo_element(&o, m);
+	trans_point(&o, m);
 	element->x = o.x - m->l1.a4;
 	element->y = o.y - m->l2.a4;
 	element->z = o.z - m->l3.a4;
