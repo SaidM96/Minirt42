@@ -6,7 +6,7 @@
 /*   By: smia <smia@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/20 03:22:01 by smia              #+#    #+#             */
-/*   Updated: 2022/06/22 04:48:11 by smia             ###   ########.fr       */
+/*   Updated: 2022/06/26 03:14:05 by smia             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ t_vec   get_color(char *s)
 {
     char    **params;
     t_vec   cord;
-    
+
     params = ft_split(s, ',');
     if (!params || !params[1] || !params[1] || params[3])
         ft_err("invalid color!");
@@ -33,7 +33,7 @@ t_vec   get_vec(char *s)
 {
     char    **params;
     t_vec   cord;
-    
+
     params = ft_split(s, ',');
     if (!params || !params[1] || !params[1] || params[3])
         ft_err("invalid coordinates");
@@ -44,7 +44,6 @@ t_vec   get_vec(char *s)
 
 void    parse_line(char *id, char **tockens, t_scene *sc)
 {
-    
     if (id[0] == 'A' && id[1] == '\0')
         parse_ambient(sc, tockens);
 	else if (id[0] == 'C' && id[1] == '\0')
@@ -75,5 +74,4 @@ void    parse(t_scene *sc, int fd)
         free_split(tockens);
     }
     close(fd);
-    
 }

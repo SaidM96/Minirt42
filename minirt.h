@@ -6,14 +6,14 @@
 /*   By: smia <smia@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/24 13:01:02 by smia              #+#    #+#             */
-/*   Updated: 2022/06/26 01:46:50 by smia             ###   ########.fr       */
+/*   Updated: 2022/06/26 03:42:03 by smia             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef MINIRT_H
 # define MINIRT_H
 
-# define WIDTH 1200
+# define WIDTH 1000
 # define HEIGHT 1000
 # define CY 1
 # define PL 2
@@ -23,6 +23,7 @@
 # include <stdio.h>
 # include <fcntl.h>
 # include <math.h>
+# include "mlx.h"
 
 typedef struct  s_vec
 {
@@ -100,15 +101,12 @@ typedef struct s_mlx
 {
     void	*win;
 	void	*mlx;
-	void	*img;
-    int     endn;
-    
 }               t_mlx;
 
+
+// parse
 void	ft_err(char *err);
 int     check_file(int ac, char **av);
-// parse
-
 void    parse(t_scene *sc, int fd);
 void    parse_line(char *id, char **tockens, t_scene *sc);
 void    parse_plane(t_scene *sc, char **tockens);
@@ -157,7 +155,14 @@ void        calcul_Rx_Ry(t_vec v_dir, t_matrix *Rx, t_matrix *Ry);
 double      get_angle_x(double y, double z, double angle);
 double	    get_angle_y(double x, double z, double angle);
 
-// Raytracing
+// transformation scene
 void    new_world(t_scene *sc);
+void    trans_all(t_scene *sc, t_matrix *m);
+void	trans_vdir(t_vec *element, t_matrix *m);
+void	trans_point(t_vec *p, t_matrix *m);
+
+// Raytracing
+void	ray_tracin(t_scene *sc, t_mlx *mlx);
+void	init_ray(t_scene *sc, t_vec *ray);
 
 #endif

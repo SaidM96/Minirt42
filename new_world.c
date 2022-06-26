@@ -6,7 +6,7 @@
 /*   By: smia <smia@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/25 02:36:43 by smia              #+#    #+#             */
-/*   Updated: 2022/06/26 02:06:10 by smia             ###   ########.fr       */
+/*   Updated: 2022/06/26 03:20:11 by smia             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,5 +72,5 @@ void    new_world(t_scene *sc)
 {
     sc->m_trans = get_trans_matrix(sc->cam.dir, sc->cam.cen);
     trans_all(sc, sc->m_trans);
-    
 }
+

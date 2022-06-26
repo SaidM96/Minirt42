@@ -6,7 +6,7 @@
 /*   By: smia <smia@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/20 03:21:29 by smia              #+#    #+#             */
-/*   Updated: 2022/06/22 04:48:17 by smia             ###   ########.fr       */
+/*   Updated: 2022/06/26 03:12:49 by smia             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,8 @@ void    parse_camera(t_scene *sc,char **tockens)
     if (sc->cam.dir.x > 1 || sc->cam.dir.y > 1 || sc->cam.dir.z > 1)
         ft_err("invalid orientation camera");
     if (sc->cam.dir.x < -1 || sc->cam.dir.y < -1 || sc->cam.dir.z < -1)
+        ft_err("invalid orientation camera");
+    if (sc->cam.dir.x == 0 || sc->cam.dir.y == 0 || sc->cam.dir.z == 0)
         ft_err("invalid orientation camera");
     sc->cam.fov = ft_atod(tockens[3]);
     if (sc->cam.fov < 0 || sc->cam.fov > 180)
