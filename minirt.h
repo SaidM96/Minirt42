@@ -6,7 +6,7 @@
 /*   By: smia <smia@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/24 13:01:02 by smia              #+#    #+#             */
-/*   Updated: 2022/06/26 03:42:03 by smia             ###   ########.fr       */
+/*   Updated: 2022/06/28 11:33:51 by smia             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -162,7 +162,7 @@ void	trans_vdir(t_vec *element, t_matrix *m);
 void	trans_point(t_vec *p, t_matrix *m);
 
 // Raytracing
-void	ray_tracin(t_scene *sc, t_mlx *mlx);
+void	ray_tracing(t_scene *sc, t_mlx *mlx);
 void	init_ray(t_scene *sc, t_vec *ray);
 
 #endif

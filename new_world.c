@@ -6,7 +6,7 @@
 /*   By: smia <smia@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/25 02:36:43 by smia              #+#    #+#             */
-/*   Updated: 2022/06/26 03:20:11 by smia             ###   ########.fr       */
+/*   Updated: 2022/06/28 11:30:55 by smia             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,15 +25,15 @@ void	trans_point(t_vec *p, t_matrix *m)
 		+ (m->l3.a3 * p1.z) + (m->l3.a4);
 }
 
-void	trans_vdir(t_vec *element, t_matrix *m)
+void	trans_vdir(t_vec *v, t_matrix *m)
 {
 	t_vec	o;
 
-	o = *element;
+	o = *v;
 	trans_point(&o, m);
-	element->x = o.x - m->l1.a4;
-	element->y = o.y - m->l2.a4;
-	element->z = o.z - m->l3.a4;
+	v->x = o.x - m->l1.a4;
+	v->y = o.y - m->l2.a4;
+	v->z = o.z - m->l3.a4;
 }
 
 void    trans_all(t_scene *sc, t_matrix *m)
@@ -64,8 +64,8 @@ void    trans_all(t_scene *sc, t_matrix *m)
         }
         objs = objs->next;
     }
-    trans_vdir(&(objs->dir), m);
-    trans_point(&(objs->cen), m);
+    trans_vdir(&(sc->cam.dir), m);
+    trans_point(&(sc->cam.cen), m);
 }
 
 void    new_world(t_scene *sc)

@@ -6,7 +6,7 @@
 /*   By: smia <smia@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/21 17:16:02 by smia              #+#    #+#             */
-/*   Updated: 2022/06/26 03:41:34 by smia             ###   ########.fr       */
+/*   Updated: 2022/06/28 11:30:55 by smia             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ int     pixel_color(t_scene *sc, t_vec ray, double stp)
     // 2 - calcul the color
 }
 
-void	ray_tracin(t_scene *sc, t_mlx *mlx)
+void	ray_tracing(t_scene *sc, t_mlx *mlx)
 {
 	int		x;
 	int		y;
