@@ -6,7 +6,7 @@
 /*   By: smia <smia@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/25 02:36:43 by smia              #+#    #+#             */
-/*   Updated: 2022/06/28 11:30:55 by smia             ###   ########.fr       */
+/*   Updated: 2022/06/29 21:32:49 by smia             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,8 +39,6 @@ void	trans_vdir(t_vec *v, t_matrix *m)
 void    trans_all(t_scene *sc, t_matrix *m)
 {
     t_objs      *objs;
-    t_vec       null;
-    t_vec       o;
 
     objs = sc->objs;
 	trans_point(&(sc->light.src), m); 
@@ -57,10 +55,6 @@ void    trans_all(t_scene *sc, t_matrix *m)
         {
             trans_point(&(objs->cen), m);
             trans_vdir(&(objs->dir), m);
-            objs->m_trans = get_trans_matrix(objs->cen, objs->dir);
-            trans_point(&o, objs->m_trans);
-		    objs->o_c = sub_vec(o, null);
-		    objs->z_o = o.z;
         }
         objs = objs->next;
     }

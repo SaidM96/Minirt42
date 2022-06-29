@@ -6,7 +6,7 @@
 /*   By: smia <smia@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/24 13:01:02 by smia              #+#    #+#             */
-/*   Updated: 2022/06/28 11:33:51 by smia             ###   ########.fr       */
+/*   Updated: 2022/06/29 21:33:03 by smia             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,9 +78,6 @@ typedef struct  s_objs
     int             type;
     t_vec           cen;
     t_vec           dir;
-    t_matrix        *m_trans;
-    t_vec       	o_c;
-	double	        z_o;
     t_vec           p;
     t_vec           col;
     t_vec           norm;
@@ -103,6 +100,11 @@ typedef struct s_mlx
 	void	*mlx;
 }               t_mlx;
 
+typedef struct collector
+{
+	void				*adr;
+	struct collector	*next;
+}	t_collector;
 
 // parse
 void	ft_err(char *err);
@@ -118,11 +120,12 @@ void    parse_ambient(t_scene *sc, char **tockens);
 
 
 // allocation
-t_scene     *alloc_scence(void);
-t_objs      *alloc_obj(t_objs   **objs);
-void	    t_lstdel(t_objs **objs);
-void        free_all(t_scene *sc);
-t_matrix    *alloc_matrix(void);
+t_scene         *alloc_scence(void);
+t_objs          *alloc_obj(t_objs   **objs);
+t_matrix        *alloc_matrix(void);
+void	        ft_collect(t_collector **root, t_collector *node);
+void	        *ft_malloc(t_collector **root, size_t size);
+t_collector	    *root;
 
 // tools
 int	    ft_strlen(const char *str);

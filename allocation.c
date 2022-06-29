@@ -6,7 +6,7 @@
 /*   By: smia <smia@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/24 13:12:52 by smia              #+#    #+#             */
-/*   Updated: 2022/06/22 04:48:51 by smia             ###   ########.fr       */
+/*   Updated: 2022/06/29 21:36:09 by smia             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 void	ft_err(char *err)
 {
 	printf("Error : %s\n", err);
+    ft_collect(&root,root);
 	exit(1);
 }
 
@@ -22,7 +23,8 @@ t_scene *alloc_scence(void)
 {
     t_scene *sc;
 
-    sc = malloc((sizeof(t_scene)));
+    root = NULL;
+    sc = ft_malloc(&root,(sizeof(t_scene)));
     if (!sc)
         return (NULL);
 	sc->objs = NULL;
@@ -36,7 +38,7 @@ t_objs  *alloc_obj(t_objs   **objs)
 {
     t_objs  *new_obj;
 
-    new_obj = malloc(sizeof(t_objs));
+    new_obj = ft_malloc(&root,sizeof(t_objs));
     if (!new_obj)
         return (NULL);
     null_vec(&(new_obj->col));
@@ -46,26 +48,4 @@ t_objs  *alloc_obj(t_objs   **objs)
     new_obj->next = *objs;
     *objs = new_obj;
     return (new_obj);
-}
-
-void		ft_lstdel(t_objs **objs)
-{
-	t_objs	*temp;
-
-	if (!objs)
-		return ;
-	while (*objs)
-	{
-		temp = (*objs)->next;
-		free(*objs);
-		*objs = temp;
-	}
-	*objs = NULL;
-	return ;
-}
-
-void    free_all(t_scene *sc)
-{
-    ft_lstdel(&(sc->objs));
-    free(sc);
 }

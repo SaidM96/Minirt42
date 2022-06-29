@@ -6,7 +6,7 @@
 /*   By: smia <smia@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/20 03:35:29 by smia              #+#    #+#             */
-/*   Updated: 2022/06/26 03:31:32 by smia             ###   ########.fr       */
+/*   Updated: 2022/06/29 21:27:53 by smia             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,6 @@ int main (int ac, char **av)
     mlx->mlx = mlx_init();
     mlx->win = mlx_new_window(mlx, WIDTH, HEIGHT, "MiniRt by SaidM");
     ray_tracing(sc,mlx);
-    free_all(sc);
+    ft_collect(&root,root);
     return 0;
 }

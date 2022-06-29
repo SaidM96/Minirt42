@@ -6,7 +6,7 @@
 /*   By: smia <smia@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/20 08:34:13 by smia              #+#    #+#             */
-/*   Updated: 2022/06/22 04:47:38 by smia             ###   ########.fr       */
+/*   Updated: 2022/06/29 21:29:43 by smia             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,6 @@ double	ft_atod(const char *str)
 		nb = nb + (double)(str[i] - '0') / aux;
 		aux = aux * 10;
 	}
-
 	return ((double)nb * signe);
 }
 
