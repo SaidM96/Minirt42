@@ -6,7 +6,7 @@
 /*   By: smia <smia@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/24 13:01:02 by smia              #+#    #+#             */
-/*   Updated: 2022/08/30 15:20:57 by smia             ###   ########.fr       */
+/*   Updated: 2022/08/30 16:53:36 by smia             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,6 +120,9 @@ t_vec	    mult_vec(t_vec v, double a);
 t_vec		vect_cross(t_vec u, t_vec v);
 double	    dot_product(t_vec u, t_vec v);
 
-// Intersection 
+// Intersection
+// Intersection
+// Intersection
+// Intersection
 
 #endif
