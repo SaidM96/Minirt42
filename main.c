@@ -6,7 +6,7 @@
 /*   By: smia <smia@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/20 03:35:29 by smia              #+#    #+#             */
-/*   Updated: 2022/06/29 21:27:53 by smia             ###   ########.fr       */
+/*   Updated: 2022/08/30 15:30:45 by smia             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ int check_file(int ac, char **av)
         fd = open(av[1], O_RDONLY);
         if (fd < 0)
             return (1);
-    close(fd);
+        close(fd);
     }
     else
         return (1);
@@ -41,19 +41,20 @@ int main (int ac, char **av)
 {
     t_scene *sc;
     int     fd;
-    t_mlx   *mlx;
 
     if (check_file(ac, av))
-        ft_err("wrong args or file");
+        ft_err("wrong args : Please try enter filename.rt");
     fd = open(av[1], O_RDONLY);
     sc = alloc_scence();
     if (!sc)
         ft_err("allocation");
     parse(sc,fd);
-    new_world(sc);
-    mlx->mlx = mlx_init();
-    mlx->win = mlx_new_window(mlx, WIDTH, HEIGHT, "MiniRt by SaidM");
-    ray_tracing(sc,mlx);
+    
+    while (sc->objs)
+    {
+        printf("%d \n" , sc->objs->type);
+        sc->objs = sc->objs->next;
+    }
     ft_collect(&root,root);
     return 0;
 }

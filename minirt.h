@@ -6,7 +6,7 @@
 /*   By: smia <smia@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/24 13:01:02 by smia              #+#    #+#             */
-/*   Updated: 2022/06/29 21:33:03 by smia             ###   ########.fr       */
+/*   Updated: 2022/08/30 15:20:57 by smia             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,25 +31,6 @@ typedef struct  s_vec
     double  y;
     double  z;
 }               t_vec;
-
-// matrix 
-
-typedef struct  s_line 
-{
-    double  a1;
-    double  a2;
-    double  a3;
-    double  a4;
-}               t_line;
-
-typedef struct s_matrix
-{
-    t_line  l1;
-    t_line  l2;
-    t_line  l3;
-    t_line  l4;
-}               t_matrix;
-
 
 typedef struct  t_cam
 {
@@ -91,14 +72,7 @@ typedef struct s_scene
     t_light     light;
     t_amb       amb;
     t_objs      *objs;
-    t_matrix    *m_trans;
 }               t_scene;
-
-typedef struct s_mlx
-{
-    void	*win;
-	void	*mlx;
-}               t_mlx;
 
 typedef struct collector
 {
@@ -118,11 +92,9 @@ void    parse_light(t_scene *sc, char **tockens);
 void    parse_camera(t_scene *sc,char **tockens);
 void    parse_ambient(t_scene *sc, char **tockens);
 
-
 // allocation
 t_scene         *alloc_scence(void);
 t_objs          *alloc_obj(t_objs   **objs);
-t_matrix        *alloc_matrix(void);
 void	        ft_collect(t_collector **root, t_collector *node);
 void	        *ft_malloc(t_collector **root, size_t size);
 t_collector	    *root;
@@ -148,24 +120,6 @@ t_vec	    mult_vec(t_vec v, double a);
 t_vec		vect_cross(t_vec u, t_vec v);
 double	    dot_product(t_vec u, t_vec v);
 
-// matrix
-void        null_matrix(t_matrix *matrix);
-void        null_line_matrix(t_line l);
-t_matrix    *get_trans_matrix(t_vec v_org, t_vec v_dir);
-t_matrix    *get_inverse(t_matrix *t_m);
-void        get_R_matrix(t_matrix *m, t_matrix *Rx, t_matrix *Ry);
-void        calcul_Rx_Ry(t_vec v_dir, t_matrix *Rx, t_matrix *Ry);
-double      get_angle_x(double y, double z, double angle);
-double	    get_angle_y(double x, double z, double angle);
-
-// transformation scene
-void    new_world(t_scene *sc);
-void    trans_all(t_scene *sc, t_matrix *m);
-void	trans_vdir(t_vec *element, t_matrix *m);
-void	trans_point(t_vec *p, t_matrix *m);
-
-// Raytracing
-void	ray_tracing(t_scene *sc, t_mlx *mlx);
-void	init_ray(t_scene *sc, t_vec *ray);
+// Intersection 
 
 #endif

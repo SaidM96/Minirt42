@@ -6,7 +6,7 @@
 /*   By: smia <smia@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/20 03:22:01 by smia              #+#    #+#             */
-/*   Updated: 2022/06/26 03:14:05 by smia             ###   ########.fr       */
+/*   Updated: 2022/08/30 15:21:37 by smia             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ t_vec   get_color(char *s)
     t_vec   cord;
 
     params = ft_split(s, ',');
-    if (!params || !params[1] || !params[1] || params[3])
+    if (!params || !params[1] || !params[2] || params[3])
         ft_err("invalid color!");
     cord = (t_vec){ft_atoi(params[0]), ft_atoi(params[1]), ft_atoi(params[2])};
     if (cord.x > 255 || cord.y > 255 || cord.z > 255)
@@ -35,7 +35,7 @@ t_vec   get_vec(char *s)
     t_vec   cord;
 
     params = ft_split(s, ',');
-    if (!params || !params[1] || !params[1] || params[3])
+    if (!params || !params[1] || !params[2] || params[3])
         ft_err("invalid coordinates");
     cord = (t_vec){ft_atod(params[0]), ft_atod(params[1]), ft_atod(params[2])};
     free_split(params);
