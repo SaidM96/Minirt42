@@ -6,11 +6,25 @@
 /*   By: smia <smia@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/20 08:34:13 by smia              #+#    #+#             */
-/*   Updated: 2022/06/29 21:29:43 by smia             ###   ########.fr       */
+/*   Updated: 2022/09/01 16:33:15 by smia             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
+
+double take_min(double x, double y)
+{
+	if (x > y)
+		return y;
+	return (x);
+}
+void add_dist(double *dist, double d)
+{
+	int  i = 0;
+	while (dist[i] != -1)
+		i++;
+	dist[i] = d;
+}
 
 double	ft_atod(const char *str)
 {

@@ -6,7 +6,7 @@
 /*   By: smia <smia@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/20 03:35:29 by smia              #+#    #+#             */
-/*   Updated: 2022/08/30 15:30:45 by smia             ###   ########.fr       */
+/*   Updated: 2022/09/02 14:15:20 by smia             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,11 +50,7 @@ int main (int ac, char **av)
         ft_err("allocation");
     parse(sc,fd);
     
-    while (sc->objs)
-    {
-        printf("%d \n" , sc->objs->type);
-        sc->objs = sc->objs->next;
-    }
+
     ft_collect(&root,root);
     return 0;
 }

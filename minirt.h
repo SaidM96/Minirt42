@@ -6,7 +6,7 @@
 /*   By: smia <smia@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/24 13:01:02 by smia              #+#    #+#             */
-/*   Updated: 2022/08/30 15:20:57 by smia             ###   ########.fr       */
+/*   Updated: 2022/09/01 16:34:11 by smia             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,12 @@
 # include <fcntl.h>
 # include <math.h>
 # include "mlx.h"
+
+typedef struct s_ray
+{
+    double *dist; 
+    t_vec   dir;
+}               t_ray;
 
 typedef struct  s_vec
 {
@@ -121,5 +127,7 @@ t_vec		vect_cross(t_vec u, t_vec v);
 double	    dot_product(t_vec u, t_vec v);
 
 // Intersection 
+void add_dist(double *dist, double d);
+double take_min(double x, double y);
 
 #endif
