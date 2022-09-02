@@ -6,7 +6,11 @@
 /*   By: smia <smia@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/24 10:38:51 by smia              #+#    #+#             */
+<<<<<<< HEAD
+/*   Updated: 2022/09/02 14:23:40 by smia             ###   ########.fr       */
+=======
 /*   Updated: 2022/09/01 16:23:31 by smia             ###   ########.fr       */
+>>>>>>> 50748cb3512a062af8a85e1908aa038b62d8d09b
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,3 +99,24 @@ t_vec		get_normalized(t_vec v)
 	return (v1);
 }
 
+<<<<<<< HEAD
+t_vec	div_vect(t_vec v, double a)
+{
+	v.x /= a;
+	v.x /= a;
+	v.z /= a;
+
+	return (v);
+}
+
+t_vec	make_vec(double x, double y, double z)
+{
+	t_vec vec;
+
+	vec.x = x;
+	vec.y = y;
+	vec.z = z;
+	return (vec);
+}
+=======
+>>>>>>> 50748cb3512a062af8a85e1908aa038b62d8d09b

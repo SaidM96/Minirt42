@@ -1,5 +1,9 @@
 NAME=miniRT
+<<<<<<< HEAD
+CSRCS= main.c get_next_line.c allocation.c tools.c parse_element.c parse.c split.c  vector.c  Garbage_Collector.c intersection.c mlx_func.c camera.c
+=======
 CSRCS= main.c get_next_line.c allocation.c tools.c parse_element.c parse.c split.c  vector.c  Garbage_Collector.c
+>>>>>>> 50748cb3512a062af8a85e1908aa038b62d8d09b
 CFLAGS= -Wall -Wextra -Werror
 CC= gcc
 

@@ -6,7 +6,11 @@
 /*   By: smia <smia@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/24 13:01:02 by smia              #+#    #+#             */
+<<<<<<< HEAD
+/*   Updated: 2022/09/02 15:04:46 by smia             ###   ########.fr       */
+=======
 /*   Updated: 2022/09/01 16:34:11 by smia             ###   ########.fr       */
+>>>>>>> 50748cb3512a062af8a85e1908aa038b62d8d09b
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,11 +29,23 @@
 # include <math.h>
 # include "mlx.h"
 
+<<<<<<< HEAD
+/* img info struct */
+
+typedef struct	s_data {
+	void	*img;
+	char	*addr;
+	int		bits_per_pixel;
+	int		line_length;
+	int		endian;
+}				img_data;
+=======
 typedef struct s_ray
 {
     double *dist; 
     t_vec   dir;
 }               t_ray;
+>>>>>>> 50748cb3512a062af8a85e1908aa038b62d8d09b
 
 typedef struct  s_vec
 {
@@ -126,8 +142,61 @@ t_vec	    mult_vec(t_vec v, double a);
 t_vec		vect_cross(t_vec u, t_vec v);
 double	    dot_product(t_vec u, t_vec v);
 
+
+
+/* camera */
+
+typedef	struct Camera_Setup
+{
+	t_vec		orig;  // Camera origin (position)
+    double		viewport_h; // viewport length
+    double		viewport_w; // viewport width
+    t_vec		horizontal; // horizontal length vector
+    t_vec		vertical; // vertical length vector
+    double		focal_len; // focal length
+    t_vec		left_bottom; // lower left corner
+	
+}	t_camera;
+
+typedef struct CamRay
+{
+	t_vec	origin;
+	t_vec	dir;
+	t_vec	m_ab;//vector from p1 to p2
+    double *dist;
+}	t_CamRay;
+
+typedef	struct  s_canvas
+{
+    int     width; //canvas width
+    int     height; //canvas height;
+    double  aspect_ratio;
+}	t_canvas;
+
 // Intersection 
 void add_dist(double *dist, double d);
 double take_min(double x, double y);
+<<<<<<< HEAD
+int find_inter(t_CamRay *ray, t_objs **objs);
+void	my_mlx_pixel_put(img_data *data, int x, int y, int color);
+int inter_sphere(t_CamRay *ray, t_objs *sp);
+int inter_plane(t_CamRay *ray, t_objs *pl);
+
+
+/* mlx funct end */
+
+t_vec	    div_vect(t_vec v, double a);
+t_CamRay	ray(t_vec orig, t_vec dir);
+t_vec		ray_at(t_CamRay *ray, double t);
+t_canvas	canvas(int  width, int height);
+t_camera    camera(t_canvas *canvas, t_vec orig);
+t_CamRay	ray_primary(t_camera *cam, double u, double v);
+t_vec		color(double r, double g, double b);
+t_vec		ray_color(t_CamRay *r);
+t_vec		make_vec(double x, double y, double z);
+
+
+=======
+>>>>>>> 50748cb3512a062af8a85e1908aa038b62d8d09b
 
 #endif
