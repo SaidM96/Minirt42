@@ -6,11 +6,7 @@
 /*   By: smia <smia@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/24 13:01:02 by smia              #+#    #+#             */
-<<<<<<< HEAD
-/*   Updated: 2022/09/02 15:04:46 by smia             ###   ########.fr       */
-=======
-/*   Updated: 2022/09/01 16:34:11 by smia             ###   ########.fr       */
->>>>>>> 50748cb3512a062af8a85e1908aa038b62d8d09b
+/*   Updated: 2022/09/03 13:11:06 by smia             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +25,6 @@
 # include <math.h>
 # include "mlx.h"
 
-<<<<<<< HEAD
 /* img info struct */
 
 typedef struct	s_data {
@@ -39,13 +34,6 @@ typedef struct	s_data {
 	int		line_length;
 	int		endian;
 }				img_data;
-=======
-typedef struct s_ray
-{
-    double *dist; 
-    t_vec   dir;
-}               t_ray;
->>>>>>> 50748cb3512a062af8a85e1908aa038b62d8d09b
 
 typedef struct  s_vec
 {
@@ -163,7 +151,6 @@ typedef struct CamRay
 	t_vec	origin;
 	t_vec	dir;
 	t_vec	m_ab;//vector from p1 to p2
-    double *dist;
 }	t_CamRay;
 
 typedef	struct  s_canvas
@@ -174,13 +161,11 @@ typedef	struct  s_canvas
 }	t_canvas;
 
 // Intersection 
-void add_dist(double *dist, double d);
 double take_min(double x, double y);
-<<<<<<< HEAD
-int find_inter(t_CamRay *ray, t_objs **objs);
+double find_inter(t_CamRay *ray, t_objs **objs);
 void	my_mlx_pixel_put(img_data *data, int x, int y, int color);
-int inter_sphere(t_CamRay *ray, t_objs *sp);
-int inter_plane(t_CamRay *ray, t_objs *pl);
+double inter_sphere(t_CamRay *ray, t_objs *sp);
+double inter_plane(t_CamRay *ray, t_objs *pl);
 
 
 /* mlx funct end */
@@ -196,7 +181,5 @@ t_vec		ray_color(t_CamRay *r);
 t_vec		make_vec(double x, double y, double z);
 
 
-=======
->>>>>>> 50748cb3512a062af8a85e1908aa038b62d8d09b
 
 #endif

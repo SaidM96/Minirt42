@@ -6,11 +6,7 @@
 /*   By: smia <smia@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/20 03:35:29 by smia              #+#    #+#             */
-<<<<<<< HEAD
-/*   Updated: 2022/09/02 15:07:34 by smia             ###   ########.fr       */
-=======
-/*   Updated: 2022/09/02 14:15:20 by smia             ###   ########.fr       */
->>>>>>> 50748cb3512a062af8a85e1908aa038b62d8d09b
+/*   Updated: 2022/09/03 13:23:17 by smia             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,11 +45,10 @@ void    ft_render(t_scene *sc)
 			ray_ = ray_primary(&cam, u, v);
 			//_ray = ray_color(&ray_);
 			//color_p = ray_color(&ray);
-            if (find_inter(&ray_, &sc->objs))
+            if (find_inter(&ray_, &sc->objs) > 0) // this line must return color of pixel (x,y)
             {
                 my_mlx_pixel_put(&img, j, i, 0x00FF0000);
             }
-				
 			else
 				my_mlx_pixel_put(&img, j, i, 0x00000000);
 		}
@@ -61,6 +56,7 @@ void    ft_render(t_scene *sc)
 	mlx_put_image_to_window(mlx, mlx_win, img.img, 0, 0);
 	mlx_loop(mlx);
 }
+
 int check_file(int ac, char **av)
 {
     int i;
@@ -98,12 +94,8 @@ int main (int ac, char **av)
     if (!sc)
         ft_err("allocation");
     parse(sc,fd);
-<<<<<<< HEAD
     ft_render(sc);
-=======
     
-
->>>>>>> 50748cb3512a062af8a85e1908aa038b62d8d09b
     ft_collect(&root,root);
     return 0;
 }

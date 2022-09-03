@@ -6,21 +6,13 @@
 /*   By: smia <smia@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/30 14:00:32 by smia              #+#    #+#             */
-<<<<<<< HEAD
-/*   Updated: 2022/09/02 15:03:53 by smia             ###   ########.fr       */
-=======
-/*   Updated: 2022/09/02 13:26:23 by smia             ###   ########.fr       */
->>>>>>> 50748cb3512a062af8a85e1908aa038b62d8d09b
+/*   Updated: 2022/09/03 13:22:47 by smia             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 
-<<<<<<< HEAD
-int inter_sphere(t_CamRay *ray, t_objs *sp)
-=======
-int inter_sphere(t_ray *ray, t_cam cam, t_objs *sp)
->>>>>>> 50748cb3512a062af8a85e1908aa038b62d8d09b
+double inter_sphere(t_CamRay *ray, t_objs *sp)
 {
     double   a;
     double   b;
@@ -32,11 +24,7 @@ int inter_sphere(t_ray *ray, t_cam cam, t_objs *sp)
 
     dist1 = 0;
     dist2 = 0;
-<<<<<<< HEAD
     cam_sphere = sub_vec(sp->cen, ray->origin);
-=======
-    cam_sphere = sub_vec(sp->cen, cam.cen);
->>>>>>> 50748cb3512a062af8a85e1908aa038b62d8d09b
     a = dot_product(ray->dir,ray->dir); 
     b = 2 * dot_product(cam_sphere,ray->dir);
     c = dot_product(cam_sphere, cam_sphere) - (sp->p.x / 2) * (sp->p.x / 2);
@@ -48,77 +36,62 @@ int inter_sphere(t_ray *ray, t_cam cam, t_objs *sp)
     if (dist1 * dist2 >= 0)
     {
         if (dist1 >= 0)
-        {
-            add_dist(ray->dist, take_min(dist1, dist2));
-            return 1;
-        }
-        return 0;
+            return take_min(dist1, dist2);
+        return -1;
     }
     if (dist1 >= 0)
-    {
-        add_dist(ray->dist, dist1);
-        return 1;
-    }
-    add_dist(ray->dist, dist2);
-    return 1;
+        return dist1;
+    return dist2;
 }
 
-<<<<<<< HEAD
-int inter_plane(t_CamRay *ray, t_objs *pl)
-=======
-int inter_plane(t_ray *ray, t_cam cam, t_objs *pl)
->>>>>>> 50748cb3512a062af8a85e1908aa038b62d8d09b
+double inter_plane(t_CamRay *ray, t_objs *pl)
 {
     t_vec   cam_plane;
-    double dist;
+    double  dist;
     if (dot_product(pl->dir,ray->dir) == 0)
         return 0; 
-<<<<<<< HEAD
     cam_plane = sub_vec(pl->cen, ray->origin);
-=======
-    cam_plane = sub_vec(pl->cen, cam.cen);
->>>>>>> 50748cb3512a062af8a85e1908aa038b62d8d09b
     dist = dot_product(pl->dir, cam_plane) / dot_product(pl->dir,ray->dir);
     if (dist >= 0)
-    {
-        add_dist(ray->dist, dist);
-        return 1;
-    }
+        return dist;
     else
-        return 0;
+        return -1;
 }
 
-<<<<<<< HEAD
-// int inter_cylinder(t_ray *ray, t_cam cam, t_objs *pl)
+// double inter_cylinder(t_CamRay *ray, t_objs *cy)
 // {
     
 // }
 
-int find_inter(t_CamRay *ray, t_objs **objs)
+double find_inter(t_CamRay *ray, t_objs **objs)
 {
-    t_objs *tmp;
+    double  dist;
+    double  hdist;
+    hdist = -1;
+    t_objs  *tmp;
     tmp = *objs;
-
-    int x = 0;
+    
     while (tmp)
     {
         if (tmp->type == SP)
-            if (inter_sphere(ray,tmp))
-            {
-                x = 1;
-                break ;
-            }
-                
+        {
+            dist = inter_sphere(ray,tmp);
+            if (hdist > dist || hdist == -1)
+                hdist = dist;
+        }
+        // if (tmp->type == PL)
+        // {
+        //     dist = inter_plane(ray, tmp);
+        //     if (hdist > dist || hdist == -1)
+        //         hdist = dist;
+        // }
+        // if (tmp->type == CY)
+        // {
+        //     inter_cylinder(ray, tmp);
+        //     if (hdist > dist || hdist == -1)
+        //         hdist = dist;
+        // }
         tmp = tmp->next;
     }
-    if (x == 1)
-        return 1;
-    else
-        return 0;
+    return (hdist);
 }
-=======
-int inter_cylinder(t_ray *ray, t_cam cam, t_objs *pl)
-{
-    
-}
->>>>>>> 50748cb3512a062af8a85e1908aa038b62d8d09b

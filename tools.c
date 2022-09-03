@@ -6,11 +6,7 @@
 /*   By: smia <smia@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/20 08:34:13 by smia              #+#    #+#             */
-<<<<<<< HEAD
-/*   Updated: 2022/09/02 15:06:40 by smia             ###   ########.fr       */
-=======
-/*   Updated: 2022/09/01 16:33:15 by smia             ###   ########.fr       */
->>>>>>> 50748cb3512a062af8a85e1908aa038b62d8d09b
+/*   Updated: 2022/09/03 13:18:39 by smia             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,18 +18,7 @@ double take_min(double x, double y)
 		return y;
 	return (x);
 }
-void add_dist(double *dist, double d)
-{
-	int  i = 0;
-<<<<<<< HEAD
-	// while (dist[i] != -1)
-	// 	i++;
-=======
-	while (dist[i] != -1)
-		i++;
->>>>>>> 50748cb3512a062af8a85e1908aa038b62d8d09b
-	dist[i] = d;
-}
+
 
 double	ft_atod(const char *str)
 {
