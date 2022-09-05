@@ -6,7 +6,7 @@
 /*   By: smia <smia@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/02 14:21:47 by smia              #+#    #+#             */
-/*   Updated: 2022/09/02 15:00:29 by smia             ###   ########.fr       */
+/*   Updated: 2022/09/05 18:52:28 by smia             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,15 +30,15 @@ t_vec	ray_at(t_CamRay *ray, double t)
     return (at);
 }
 
-t_camera    camera(t_canvas *canvas, t_vec orig)
+t_camera    camera(t_canvas *canvas, t_scene *sc)
 {
     t_camera    cam;
     double      focal_len;
     double      viewport_height;
-
-    viewport_height = tan(180);
+  
+    viewport_height = tan(sc->cam.fov * M_PI / 180);
     focal_len = 1.0;
-    cam.orig = orig;
+    cam.orig = sc->cam.cen;
     cam.viewport_h = viewport_height;
     cam.viewport_w = viewport_height * canvas->aspect_ratio;
     cam.focal_len = focal_len;
@@ -86,4 +86,49 @@ t_canvas    canvas(int width, int height)
     canv.width = width;
     canv.aspect_ratio = canv.width / canv.height;
     return (canv);
+}
+
+void    ft_render(t_scene *sc)
+{
+	void		*mlx;
+	void		*mlx_win;
+	img_data	img;
+	
+	double		v, u;
+	//t_vec		dir;
+	t_canvas	canv;
+	t_camera	cam;
+	//t_CamRay	ray;
+	t_CamRay	ray_;
+	//t_vec		_ray;
+
+
+	(void)sc;
+	canv = canvas(WIDTH, HEIGHT);
+	cam = camera(&canv, sc);
+	mlx = mlx_init();
+	mlx_win = mlx_new_window(mlx, WIDTH, HEIGHT, "Hello world!");
+	img.img = mlx_new_image(mlx, WIDTH, HEIGHT);
+	img.addr = mlx_get_data_addr(img.img, &img.bits_per_pixel, &img.line_length,
+								&img.endian);
+	for (int i = canv.height - 1; i >= 0; i--)
+	{
+		for (int j = 0; j < canv.width; j++)
+		{
+			u = (double)i / (canv.width - 1);
+			v = (double)j / (canv.height - 1);
+			//ray_ = ray(make_vec(0.0, 0.0, 0.0), dir);
+			ray_ = ray_primary(&cam, u, v);
+			//_ray = ray_color(&ray_);
+			//color_p = ray_color(&ray);
+            if (find_inter(&ray_, &sc->objs) > 0) // this line must return color of pixel (x,y)
+            {
+                my_mlx_pixel_put(&img, j, i, 0x00FF0000);
+            }
+			else
+				my_mlx_pixel_put(&img, j, i, 0x00000000);
+		}
+	}
+	mlx_put_image_to_window(mlx, mlx_win, img.img, 0, 0);
+	mlx_loop(mlx);
 }

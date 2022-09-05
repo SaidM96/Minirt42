@@ -6,7 +6,7 @@
 /*   By: smia <smia@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/24 13:01:02 by smia              #+#    #+#             */
-/*   Updated: 2022/09/03 13:11:06 by smia             ###   ########.fr       */
+/*   Updated: 2022/09/05 18:49:45 by smia             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -166,7 +166,7 @@ double find_inter(t_CamRay *ray, t_objs **objs);
 void	my_mlx_pixel_put(img_data *data, int x, int y, int color);
 double inter_sphere(t_CamRay *ray, t_objs *sp);
 double inter_plane(t_CamRay *ray, t_objs *pl);
-
+void    ft_render(t_scene *sc);
 
 /* mlx funct end */
 
@@ -174,7 +174,7 @@ t_vec	    div_vect(t_vec v, double a);
 t_CamRay	ray(t_vec orig, t_vec dir);
 t_vec		ray_at(t_CamRay *ray, double t);
 t_canvas	canvas(int  width, int height);
-t_camera    camera(t_canvas *canvas, t_vec orig);
+t_camera    camera(t_canvas *canvas, t_scene *sc);
 t_CamRay	ray_primary(t_camera *cam, double u, double v);
 t_vec		color(double r, double g, double b);
 t_vec		ray_color(t_CamRay *r);

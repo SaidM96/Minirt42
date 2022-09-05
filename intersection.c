@@ -6,7 +6,7 @@
 /*   By: smia <smia@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/30 14:00:32 by smia              #+#    #+#             */
-/*   Updated: 2022/09/03 13:22:47 by smia             ###   ########.fr       */
+/*   Updated: 2022/09/05 19:01:51 by smia             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,8 +48,9 @@ double inter_plane(t_CamRay *ray, t_objs *pl)
 {
     t_vec   cam_plane;
     double  dist;
-    if (dot_product(pl->dir,ray->dir) == 0)
-        return 0; 
+    
+    if (fabs(dot_product(pl->dir,ray->dir)) <= 0.0001)
+        return -1;
     cam_plane = sub_vec(pl->cen, ray->origin);
     dist = dot_product(pl->dir, cam_plane) / dot_product(pl->dir,ray->dir);
     if (dist >= 0)
@@ -58,40 +59,67 @@ double inter_plane(t_CamRay *ray, t_objs *pl)
         return -1;
 }
 
-// double inter_cylinder(t_CamRay *ray, t_objs *cy)
-// {
-    
-// }
+double inter_cylinder(t_CamRay *ray, t_objs *cy)
+{
+    t_vec		f;
+	t_vec	    cam_cy;
+	t_vec		abc;
+	double		discr;
+    double      dist1;
+    double      dist2;
+
+	cam_cy = sub_vec(ray->origin, cy->cen);
+	f = sub_vec(ray->dir, mult_vec(cy->dir,dot_product(ray->dir, cy->dir)));
+	cam_cy = sub_vec(cam_cy, mult_vec(cy->dir,dot_product(cam_cy, cy->dir)));
+	abc.x = get_norm2(f);
+	abc.y = 2 * dot_product(f, cam_cy);
+	abc.z = get_norm2(cam_cy) - (cy->p.x * cy->p.x );
+	discr = abc.y * abc.y - 4 * abc.x * abc.z;
+    if (discr < 0)
+        return -1;
+        dist1 = (abc.y * (-1) - sqrt(discr)) / (2 * abc.x);
+    dist2 = (abc.y * (-1) + sqrt(discr)) / (2 * abc.x);
+    if (dist1 * dist2 >= 0)
+    {
+        if (dist1 >= 0)
+            return take_min(dist1, dist2);
+        return -1;
+    }
+    if (dist1 >= 0)
+        return dist1;
+    return dist2; 
+        
+}
 
 double find_inter(t_CamRay *ray, t_objs **objs)
 {
     double  dist;
     double  hdist;
     hdist = -1;
-    t_objs  *tmp;
-    tmp = *objs;
+    t_objs  *obj;
+    obj = *objs;
     
-    while (tmp)
+    while (obj)
     {
-        if (tmp->type == SP)
+        if (obj->type == SP)
         {
-            dist = inter_sphere(ray,tmp);
-            if (hdist > dist || hdist == -1)
+            dist = inter_sphere(ray,obj);
+            if ((hdist > dist && dist > 0) || hdist == -1)
                 hdist = dist;
         }
-        // if (tmp->type == PL)
-        // {
-        //     dist = inter_plane(ray, tmp);
-        //     if (hdist > dist || hdist == -1)
-        //         hdist = dist;
-        // }
-        // if (tmp->type == CY)
-        // {
-        //     inter_cylinder(ray, tmp);
-        //     if (hdist > dist || hdist == -1)
-        //         hdist = dist;
-        // }
-        tmp = tmp->next;
+        if (obj->type == PL)
+        {
+            dist = inter_plane(ray, obj);
+            if ((hdist > dist && dist > 0) || hdist == -1)
+                hdist = dist;
+        }
+        if (obj->type == CY)
+        {
+            inter_cylinder(ray, obj);
+            if ((hdist > dist && dist > 0) || hdist == -1)
+                hdist = dist;
+        }
+        obj = obj->next;
     }
     return (hdist);
 }
