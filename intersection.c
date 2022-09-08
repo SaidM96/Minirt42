@@ -6,7 +6,7 @@
 /*   By: smia <smia@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/30 14:00:32 by smia              #+#    #+#             */
-/*   Updated: 2022/09/05 19:01:51 by smia             ###   ########.fr       */
+/*   Updated: 2022/09/08 21:13:00 by smia             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ double inter_sphere(t_CamRay *ray, t_objs *sp)
     c = dot_product(cam_sphere, cam_sphere) - (sp->p.x / 2) * (sp->p.x / 2);
     discr = b * b - (4 * a * c);
     if (discr < 0)
-        return (0);
+        return (-1);
     dist1 = (b * (-1) - sqrt(discr)) / (2 * a);
     dist2 = (b * (-1) + sqrt(discr)) / (2 * a);
     if (dist1 * dist2 >= 0)
@@ -91,35 +91,36 @@ double inter_cylinder(t_CamRay *ray, t_objs *cy)
         
 }
 
-double find_inter(t_CamRay *ray, t_objs **objs)
+t_inter find_inter(t_CamRay *ray, t_scene *sc)
 {
-    double  dist;
-    double  hdist;
-    hdist = -1;
+    t_inter hold;
+    t_inter t;
+    hold.t = -1;
     t_objs  *obj;
-    obj = *objs;
-    
+    obj = sc->objs;
+
     while (obj)
     {
         if (obj->type == SP)
         {
-            dist = inter_sphere(ray,obj);
-            if ((hdist > dist && dist > 0) || hdist == -1)
-                hdist = dist;
+            t.t = inter_sphere(ray,obj);
+            t.col = obj->col;
+            if ((hold.t > t.t && t.t > 0) || hold.t == -1)
+                hold = t;
         }
         if (obj->type == PL)
         {
-            dist = inter_plane(ray, obj);
-            if ((hdist > dist && dist > 0) || hdist == -1)
-                hdist = dist;
+            t.t = inter_plane(ray, obj);
+            if ((hold.t > t.t && t.t > 0) || hold.t == -1)
+                hold = t;
         }
         if (obj->type == CY)
         {
             inter_cylinder(ray, obj);
-            if ((hdist > dist && dist > 0) || hdist == -1)
-                hdist = dist;
+            if ((hold.t > t.t && t.t > 0) || hold.t == -1)
+                hold = t;
         }
         obj = obj->next;
     }
-    return (hdist);
+    return (hold);
 }
