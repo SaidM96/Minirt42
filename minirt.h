@@ -6,14 +6,14 @@
 /*   By: smia <smia@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/24 13:01:02 by smia              #+#    #+#             */
-/*   Updated: 2022/09/08 21:20:41 by smia             ###   ########.fr       */
+/*   Updated: 2022/09/09 23:36:35 by smia             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef MINIRT_H
 # define MINIRT_H
 
-# define WIDTH 1000
+# define WIDTH 800
 # define HEIGHT 1000
 # define CY 1
 # define PL 2
@@ -37,6 +37,11 @@ typedef struct	s_data {
 	int		endian;
 }				img_data;
 
+typedef struct	s_vars {
+	void	*mlx;
+	void	*win;
+}				t_vars;
+
 typedef struct  s_vec
 {
     double  x;
@@ -48,6 +53,7 @@ typedef struct s_inter
 {
     double  t;
     t_vec   col;
+    t_vec   hit;
 }               t_inter;
 
 typedef struct  t_cam
@@ -62,6 +68,7 @@ typedef struct  s_light
 {
     t_vec   src;
     double  ratio;
+    t_vec   col;
     int     count;
 }               t_light;
 
@@ -137,6 +144,7 @@ t_vec		add_vec(t_vec u, t_vec v);
 t_vec	    mult_vec(t_vec v, double a);
 t_vec		vect_cross(t_vec u, t_vec v);
 double	    dot_product(t_vec u, t_vec v);
+double		module_v(t_vec	v);
 
 
 
@@ -171,12 +179,15 @@ void    ft_render(t_scene *sc);
 /* mlx funct end */
 
 t_vec	        div_vect(t_vec v, double a);
-t_CamRay	    ray(t_vec orig, t_vec dir);
-t_CamRay	    ray_primary(t_camera *cam, double u, double v);
-t_vec		    color(double r, double g, double b);
-t_vec		    ray_color(t_CamRay *r);
+// t_CamRay	    ray(t_vec orig, t_vec dir);
+// t_CamRay	    ray_primary(t_camera *cam, double u, double v);
+// t_vec		    color(double r, double g, double b);
+// t_vec		    ray_color(t_CamRay *r);
 t_vec		    make_vec(double x, double y, double z);
-int   createRGB(int r, int g, int b);
+
+// color
+t_vec    add_coef(t_vec col1, t_vec col2, double ratio);
+int     createRGB(int r, int g, int b);
 
 
 
