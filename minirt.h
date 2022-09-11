@@ -6,15 +6,15 @@
 /*   By: smia <smia@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/24 13:01:02 by smia              #+#    #+#             */
-/*   Updated: 2022/09/09 23:36:35 by smia             ###   ########.fr       */
+/*   Updated: 2022/09/10 15:22:40 by smia             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef MINIRT_H
 # define MINIRT_H
 
-# define WIDTH 800
-# define HEIGHT 1000
+# define WIDTH 1200
+# define HEIGHT 1200
 # define CY 1
 # define PL 2
 # define SP 3
@@ -188,6 +188,8 @@ t_vec		    make_vec(double x, double y, double z);
 // color
 t_vec    add_coef(t_vec col1, t_vec col2, double ratio);
 int     createRGB(int r, int g, int b);
+t_vec   add_color(t_vec col1, t_vec col2);
+t_vec	ray_color(t_CamRay *ray, t_scene *sc);
 
 
 

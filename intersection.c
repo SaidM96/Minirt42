@@ -6,7 +6,7 @@
 /*   By: smia <smia@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/30 14:00:32 by smia              #+#    #+#             */
-/*   Updated: 2022/09/09 18:01:21 by smia             ###   ########.fr       */
+/*   Updated: 2022/09/10 22:38:19 by smia             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,17 +29,17 @@ double inter_sphere(t_CamRay *ray, t_objs *sp)
     b = 2 * dot_product(cam_sphere,ray->dir);
     c = dot_product(cam_sphere, cam_sphere) - (sp->p.x / 2) * (sp->p.x / 2);
     discr = b * b - (4 * a * c);
-    if (discr < 0)
+    if (discr < 0.000001)
         return (-1);
     dist1 = (b * (-1) - sqrt(discr)) / (2 * a);
     dist2 = (b * (-1) + sqrt(discr)) / (2 * a);
-    if (dist1 * dist2 >= 0)
+    if (dist1 * dist2 > 0.000001)
     {
-        if (dist1 >= 0)
+        if (dist1 > 0.000001)
             return take_min(dist1, dist2);
         return -1;
     }
-    if (dist1 >= 0)
+    if (dist1 > 0.000001)
         return dist1;
     return dist2;
 }
@@ -49,11 +49,11 @@ double inter_plane(t_CamRay *ray, t_objs *pl)
     t_vec   cam_plane;
     double  dist;
     
-    if (fabs(dot_product(pl->dir,ray->dir)) <= 0.0001)
+    if (fabs(dot_product(pl->dir,ray->dir)) <= 0.000001)
         return -1;
     cam_plane = sub_vec(pl->cen, ray->origin);
     dist = dot_product(pl->dir, cam_plane) / dot_product(pl->dir,ray->dir);
-    if (dist >= 0)
+    if (dist >= 0.000001)
         return dist;
     else
         return -1;
@@ -75,17 +75,17 @@ double inter_cylinder(t_CamRay *ray, t_objs *cy)
 	abc.y = 2 * dot_product(f, cam_cy);
 	abc.z = get_norm2(cam_cy) - (cy->p.x * cy->p.x );
 	discr = abc.y * abc.y - 4 * abc.x * abc.z;
-    if (discr < 0)
+    if (discr < 0.000001)
         return -1;
         dist1 = (abc.y * (-1) - sqrt(discr)) / (2 * abc.x);
     dist2 = (abc.y * (-1) + sqrt(discr)) / (2 * abc.x);
-    if (dist1 * dist2 >= 0)
+    if (dist1 * dist2 > 0.000001)
     {
-        if (dist1 >= 0)
+        if (dist1 > 0.000001)
             return take_min(dist1, dist2);
         return -1;
     }
-    if (dist1 >= 0)
+    if (dist1 >= 0.000001)
         return dist1;
     return dist2; 
         
@@ -105,21 +105,21 @@ t_inter find_inter(t_CamRay *ray, t_scene *sc)
         {
             inter.t = inter_sphere(ray,obj);
             inter.col = obj->col;
-            if ((hold.t > inter.t && inter.t > 0) || hold.t == -1)
+            if ((hold.t > inter.t && inter.t > 0.000001) || hold.t == -1)
                 hold = inter;
         }
         if (obj->type == PL)
         {
             inter.t = inter_plane(ray, obj);
             inter.col = obj->col;
-            if ((hold.t > inter.t && inter.t > 0) || hold.t == -1)
+            if ((hold.t > inter.t && inter.t > 0.000001) || hold.t == -1)
                 hold = inter;
         }
         if (obj->type == CY)
         {
             inter.t = inter_cylinder(ray, obj);
             inter.col = obj->col;
-            if ((hold.t > inter.t && inter.t > 0) || hold.t == -1)
+            if ((hold.t > inter.t && inter.t > 0.000001) || hold.t == -1)
                 hold = inter;
         }
         obj = obj->next;
