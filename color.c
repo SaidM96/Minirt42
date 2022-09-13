@@ -6,7 +6,7 @@
 /*   By: smia <smia@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/09 19:12:11 by smia              #+#    #+#             */
-/*   Updated: 2022/09/11 21:30:24 by smia             ###   ########.fr       */
+/*   Updated: 2022/09/13 01:26:12 by smia             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,7 @@ t_vec	ray_color(t_CamRay *ray, t_scene *sc)
 		if (shadow.t > 0.0000001 && (module_v(hit_light) > module_v(hit_sh)))
 			return (px_col);
 		px_col = add_color(px_col,add_coef(inter.col, sc->light.col , fabs(d) * sc->light.ratio));
+		// px_col = add_coef(px_col,add_coef(inter.col, sc->light.col , sc->light.ratio) , fabs(d));
 		return (px_col);
 	}
 	return (mult_vec(sc->amb.col,sc->amb.ratio));
