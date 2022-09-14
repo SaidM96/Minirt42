@@ -6,7 +6,7 @@
 /*   By: smia <smia@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/30 14:00:32 by smia              #+#    #+#             */
-/*   Updated: 2022/09/13 01:20:20 by smia             ###   ########.fr       */
+/*   Updated: 2022/09/14 18:20:31 by smia             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,63 +104,37 @@ t_inter find_inter(t_CamRay *ray, t_scene *sc)
         if (obj->type == SP)
         {
             inter.t = inter_sphere(ray,obj);
-            inter.col = obj->col;
             if (((hold.t > inter.t || hold.t == -1)  && inter.t > 0.0000001))
+            {
+                inter.col = obj->col;
+                inter.hit = add_vec(ray->origin, mult_vec(ray->dir,inter.t));
+                inter.norm = get_normalized(sub_vec(inter.hit, obj->cen));
                 hold = inter;
+            }
         }
         if (obj->type == PL)
         {
             inter.t = inter_plane(ray, obj);
-            inter.col = obj->col;
-            if ((hold.t > inter.t && inter.t > 0.0000001) || hold.t == -1)
+            if (((hold.t > inter.t || hold.t == -1)  && inter.t > 0.0000001))
+            {
+                inter.col = obj->col;
+                inter.hit = add_vec(ray->origin, mult_vec(ray->dir,inter.t));
+                inter.norm = get_normalized(sub_vec(inter.hit, obj->cen));
                 hold = inter;
+            }
         }
         if (obj->type == CY)
         {
             inter.t = inter_cylinder(ray, obj);
-            inter.col = obj->col;
-            if ((hold.t > inter.t && inter.t > 0.0000001) || hold.t == -1)
+            if (((hold.t > inter.t || hold.t == -1)  && inter.t > 0.0000001))
+            {
+                inter.col = obj->col;
+                inter.hit = add_vec(ray->origin, mult_vec(ray->dir,inter.t));
+                inter.norm = get_normalized(sub_vec(inter.hit, obj->cen));
                 hold = inter;
+            }
         }
         obj = obj->next;
     }
-    hold.hit = add_vec(ray->origin, mult_vec(ray->dir,hold.t));
-    return (hold);
-}
-
-t_inter find_inter_shadow(t_CamRay *ray, t_scene *sc)
-{
-    t_inter hold;
-    t_inter inter;
-    hold.t = -1;
-    t_objs  *obj;
-    obj = sc->objs;
-
-    while (obj)
-    {
-        if (obj->type == SP)
-        {
-            inter.t = inter_sphere(ray,obj);
-            inter.col = obj->col;
-            if (((hold.t > inter.t || hold.t == -1)  && inter.t > 0.0000001))
-                hold = inter;
-        }
-        if (obj->type == PL)
-        {
-            inter.t = inter_plane(ray, obj);
-            inter.col = obj->col;
-            if (((hold.t > inter.t || hold.t == -1)  && inter.t > 0.0000001))
-                hold = inter;
-        }
-        if (obj->type == CY)
-        {
-            inter.t = inter_cylinder(ray, obj);
-            inter.col = obj->col;
-            if (((hold.t > inter.t || hold.t == -1)  && inter.t > 0.0000001))
-                hold = inter;
-        }
-        obj = obj->next;
-    }
-    hold.hit = add_vec(ray->origin, mult_vec(ray->dir,hold.t));
     return (hold);
 }

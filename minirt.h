@@ -6,7 +6,7 @@
 /*   By: smia <smia@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/24 13:01:02 by smia              #+#    #+#             */
-/*   Updated: 2022/09/10 15:22:40 by smia             ###   ########.fr       */
+/*   Updated: 2022/09/14 18:20:01 by smia             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,7 @@ typedef struct s_inter
     double  t;
     t_vec   col;
     t_vec   hit;
+    t_vec   norm;
 }               t_inter;
 
 typedef struct  t_cam

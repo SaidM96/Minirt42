@@ -6,7 +6,7 @@
 /*   By: smia <smia@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/09 19:12:11 by smia              #+#    #+#             */
-/*   Updated: 2022/09/13 01:26:12 by smia             ###   ########.fr       */
+/*   Updated: 2022/09/14 18:21:42 by smia             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,16 +40,13 @@ t_vec	ray_color(t_CamRay *ray, t_scene *sc)
 {
 	t_inter	inter;
 	t_vec	hit_light;
-	t_vec	normal_vec;
 	double	d = 0;
 	t_vec   px_col;
 	inter = find_inter(ray, sc);
 	if (inter.t > 0.0000001)
 	{
-
-		normal_vec  = get_normalized(sub_vec(inter.hit,sc->objs->cen));
 		hit_light = sub_vec(sc->light.src, inter.hit);
-		d = dot_product(get_normalized(hit_light), normal_vec);
+		d = dot_product(get_normalized(hit_light), inter.norm);
 		px_col = add_coef(inter.col, sc->amb.col,sc->amb.ratio); // this function try to merge 2 col with consideration of ratio
 		t_CamRay sh_ray;
 		sh_ray.origin = inter.hit;

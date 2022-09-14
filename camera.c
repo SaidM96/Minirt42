@@ -6,7 +6,7 @@
 /*   By: smia <smia@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/02 14:21:47 by smia              #+#    #+#             */
-/*   Updated: 2022/09/11 16:48:13 by smia             ###   ########.fr       */
+/*   Updated: 2022/09/14 18:18:12 by smia             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,7 @@ void    ft_render(t_scene *sc)
 	img.img = mlx_new_image(vars.mlx, WIDTH, HEIGHT);
 	img.addr = mlx_get_data_addr(img.img, &img.bits_per_pixel, &img.line_length,
 								&img.endian);
-	for (int i = 0 ; i < HEIGHT; i++)
+	for (int i = HEIGHT - 1 ; i >= 0; i--)
 	{
 		for (int j = 0; j < WIDTH; j++)
 		{
