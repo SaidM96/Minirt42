@@ -6,11 +6,23 @@
 /*   By: smia <smia@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/20 03:21:29 by smia              #+#    #+#             */
-/*   Updated: 2022/09/09 22:40:36 by smia             ###   ########.fr       */
+/*   Updated: 2022/09/15 14:51:24 by smia             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
+
+t_light *alloc_light(t_scene *sc)
+{
+    t_light *new_light;
+
+    new_light = malloc(sizeof(t_light));
+    if (!new_light)
+        ft_err("allocation failed\n");
+    new_light->next = sc->light;
+    sc->light = new_light;
+    return (new_light);
+}
 
 void    parse_ambient(t_scene *sc, char **tockens)
 {
@@ -49,14 +61,14 @@ void    parse_light(t_scene *sc, char **tockens)
 {
     if (!tockens || !tockens[1] || !tockens[2] || !tockens[3] || tockens[4])
         ft_err("invalid light !");
-    if (sc->light.count != 0)
-        ft_err("to many light !");
-    sc->light.count++;
-    sc->light.src = get_vec(tockens[1]);
-    sc->light.ratio = ft_atod(tockens[2]);
-    if (sc->light.ratio < 0 || sc->light.ratio > 1)
+    t_light *new;
+
+    new = alloc_light(sc);
+    new->src = get_vec(tockens[1]);
+    new->ratio = ft_atod(tockens[2]);
+    if (new->ratio < 0 || new->ratio > 1)
         ft_err("enter the light brightness ratio in range [0.0,1.0]");
-    sc->light.col = get_color(tockens[3]);
+    new->col = get_color(tockens[3]);
 }
 
 void    parse_sphere(t_scene *sc, char **tockens)

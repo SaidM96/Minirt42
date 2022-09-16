@@ -6,7 +6,7 @@
 /*   By: smia <smia@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/24 13:01:02 by smia              #+#    #+#             */
-/*   Updated: 2022/09/14 18:20:01 by smia             ###   ########.fr       */
+/*   Updated: 2022/09/15 13:41:36 by smia             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,10 +67,10 @@ typedef struct  t_cam
 
 typedef struct  s_light
 {
-    t_vec   src;
-    double  ratio;
-    t_vec   col;
-    int     count;
+    t_vec           src;
+    double          ratio;
+    t_vec           col;
+    struct s_light  *next;
 }               t_light;
 
 typedef struct s_amb
@@ -95,7 +95,7 @@ typedef struct s_scene
 {
     t_vec       col;
     t_cam       cam;
-    t_light     light;
+    t_light     *light;
     t_amb       amb;
     t_objs      *objs;
 }               t_scene;
