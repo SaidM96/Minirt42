@@ -6,7 +6,7 @@
 /*   By: smia <smia@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/20 03:21:29 by smia              #+#    #+#             */
-/*   Updated: 2022/09/15 14:51:24 by smia             ###   ########.fr       */
+/*   Updated: 2022/09/17 20:50:03 by smia             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -122,4 +122,25 @@ void    parse_plane(t_scene *sc, char **tockens)
     if (obj->dir.x < -1 || obj->dir.y < -1 || obj->dir.z < -1)
         ft_err("invalid orientation plane");
     obj->col = get_color(tockens[3]);
+}
+
+void parse_cone(t_scene *sc, char **tockens)
+{
+    t_objs  *obj;
+
+    if (!tockens || !tockens[1] || !tockens[2] || !tockens[3] || !tockens[4] || !tockens[5] || tockens[6])
+        ft_err("invalid Cone");
+    obj = alloc_obj(sc);
+    obj->type = CO;
+    obj->cen = get_vec(tockens[1]);
+    obj->dir = get_vec(tockens[2]);
+    if (obj->dir.x > 1 || obj->dir.y > 1 || obj->dir.z > 1)
+        ft_err("invalid orientation Cone");
+    if (obj->dir.x < -1 || obj->dir.y < -1 || obj->dir.z < -1)
+        ft_err("invalid orientation Cone");
+    obj->p.x = ft_atod(tockens[3]);
+    obj->p.y = ft_atod(tockens[4]);
+    if (obj->p.x <= 0 || obj->p.y <= 0)
+        ft_err("invalid diameter Cone");
+    obj->col = get_color(tockens[5]);
 }

@@ -6,7 +6,7 @@
 /*   By: smia <smia@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/24 13:01:02 by smia              #+#    #+#             */
-/*   Updated: 2022/09/15 13:41:36 by smia             ###   ########.fr       */
+/*   Updated: 2022/09/17 20:49:17 by smia             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 # define CY 1
 # define PL 2
 # define SP 3
+# define CO 4 
 # include <stdlib.h>
 # include <unistd.h>
 # include <stdio.h>

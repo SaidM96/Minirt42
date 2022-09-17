@@ -6,7 +6,7 @@
 /*   By: smia <smia@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/09 19:12:11 by smia              #+#    #+#             */
-/*   Updated: 2022/09/16 18:40:58 by smia             ###   ########.fr       */
+/*   Updated: 2022/09/17 20:17:28 by smia             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ t_vec calcul_color(t_scene *sc, t_inter inter, t_vec  amb)
 		t_CamRay sh_ray;
 		sh_ray.origin = inter.hit;
 		sh_ray.dir = get_normalized(hit_light);
-		t_inter shadow = find_inter(&sh_ray,sc); 
+		t_inter shadow = find_inter(&sh_ray,sc);
 		t_vec hit_sh = sub_vec(shadow.hit,sh_ray.origin);
 		if (shadow.t > 0.0000001 && (module_v(hit_light) > module_v(hit_sh)))
 			ret = add_color(ret, col);
@@ -42,12 +42,6 @@ t_vec calcul_color(t_scene *sc, t_inter inter, t_vec  amb)
 			t_vec R = sub_vec(mult_vec(inter.norm, 2 * dot_product(inter.norm, L)), L);
 			double spec = pow(dot_product(R,V),50) * l->ratio * 0.5;
 			ret = add_color(ret, mult_vec(l->col, spec));
-			// double dot = dot_product(get_normalized(hit_light), get_normalized(sub_vec(sc->cam.cen,inter.hit)));
-			// double dot1 = dot_product(get_normalized(hit_light), inter.norm);
-			// double alpha = (acos(dot1));
-			// double phi = M_PI / 2 - alpha;
-			// double spec = pow(cos(phi),50) * fabs(dot) * l->ratio * 0.5 ;
-			// ret = add_color(ret, mult_vec(l->col, spec * 255));	
 		}
 		l = l->next;
 	}
