@@ -87,15 +87,15 @@ void    ft_render(t_scene *sc)
 	img.img = mlx_new_image(vars.mlx, WIDTH, HEIGHT);
 	img.addr = mlx_get_data_addr(img.img, &img.bits_per_pixel, &img.line_length,
 								&img.endian);
-	for (int i = HEIGHT - 1 ; i >= 0; i--)
+	for (int j = HEIGHT - 1 ; j >= 0; j--)
 	{
-		for (int j = 0; j < WIDTH; j++)
+		for (int i = 0; i < WIDTH; i++)
 		{
-			v = (double)i * 2 / HEIGHT - 1;
-			u = (double)j * 2 / WIDTH - 1;
+			v = (double)i * 2 / WIDTH - 1;
+			u = (double)j * 2 / HEIGHT - 1;
 			ray_ = ray_primary(&cam, v, u);
 			ray_col = ray_color(&ray_, sc);
-			my_mlx_pixel_put(&img, j, i, createRGB(ray_col.x, ray_col.y, ray_col.z));
+			my_mlx_pixel_put(&img, i, HEIGHT - 1 - j, createRGB(ray_col.x, ray_col.y, ray_col.z));
 		}
 	}
 	mlx_put_image_to_window(vars.mlx, vars.win, img.img, 0, 0);

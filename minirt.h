@@ -118,6 +118,7 @@ void    parse_sphere(t_scene *sc, char **tockens);
 void    parse_light(t_scene *sc, char **tockens);
 void    parse_camera(t_scene *sc,char **tockens);
 void    parse_ambient(t_scene *sc, char **tockens);
+void    parse_cone(t_scene *sc, char **tockens);
 
 // allocation
 t_scene         *alloc_scence(void);
