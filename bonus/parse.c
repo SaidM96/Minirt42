@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aouhadou <aouhadou@student.42.fr>          +#+  +:+       +#+        */
+/*   By: smia <smia@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/20 03:22:01 by smia              #+#    #+#             */
-/*   Updated: 2022/09/25 14:07:06 by aouhadou         ###   ########.fr       */
+/*   Updated: 2022/09/26 22:26:45 by smia             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ void	parse_line(char *id, char **tockens, t_scene *sc)
 		parse_ambient(sc, tockens);
 	else if (id[0] == 'C' && id[1] == '\0')
 		parse_camera(sc, tockens);
-	else if (id[0] == 'L' && id[1] == '\0')
+	else if (id[0] == 'l' && id[1] == '\0')
 		parse_light(sc, tockens);
 	else if (id[0] == 's' && id[1] == 'p' && id[2] == '\0')
 		parse_sphere(sc, tockens);
