@@ -6,7 +6,7 @@
 /*   By: smia <smia@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/24 13:01:02 by smia              #+#    #+#             */
-/*   Updated: 2022/09/26 22:16:56 by smia             ###   ########.fr       */
+/*   Updated: 2022/09/29 00:30:04 by smia             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 # define WIDTH 1200
 # define HEIGHT 1200
-# define EPS 0.00000000001
+# define EPS 0.000001
 # define CY 1
 # define PL 2
 # define SP 3
@@ -106,11 +106,11 @@ int			create_rgb(int r, int g, int b);
 t_vec		add_color(t_vec col1, t_vec col2);
 t_vec		ray_color(t_CamRay *ray, t_scene *sc);
 t_vec		colorize(double r, double g, double b);
-t_vec	    diffuse(t_inter inter, t_light * light, double d);
+t_vec		diffuse(t_inter inter, t_light *light, double d);
 int			shade(t_scene *sc, t_inter inter, t_light *light);
-int	        is_inside(t_vec ray, t_vec norm);
 
 //surface normal
+int			is_inside(t_vec ray, t_vec norm);
 t_inter		spher_normal(t_inter hold, t_objs *obj, t_CamRay *ray);
 t_inter		plane_normal(t_inter hold, t_objs *obj, t_CamRay *ray);
 t_inter		cylinder_normal(t_inter hold, t_objs *obj, t_CamRay *ray);
