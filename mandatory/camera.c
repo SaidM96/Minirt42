@@ -15,7 +15,7 @@
 t_camera	set_camera(t_scene *sc)
 {
 	t_camera	cam;
-	
+
 	cam.orig = sc->cam.cen;
 	cam.aspect_r = (double) WIDTH / (double) HEIGHT;
 	cam.theta = sc->cam.fov * M_PI / 180.0;

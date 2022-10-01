@@ -34,7 +34,7 @@ t_vec	calcul_color(t_scene *sc, t_inter inter, t_vec amb)
 			ret = add_color(ret, amb);
 			if (d > 0)
 				ret = add_color(add_color(ret, diffuse(inter, light, d)),
-					specular(sc, inter, light));
+						specular(sc, inter, light));
 		}
 		light = light->next;
 	}
