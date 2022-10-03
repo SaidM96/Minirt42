@@ -140,6 +140,4 @@ http://hugi.scene.org/online/hugi24/coding%20graphics%20chris%20dragan%20raytrac
 https://www.youtube.com/watch?v=gGKup9tUSrU&ab_channel=CemYuksel<br>
 https://www.scratchapixel.com/lessons/3d-basic-rendering/introduction-to-ray-tracing<br>
 http://raytracerchallenge.com/<br>
-https://mrl.nyu.edu/~dzorin/rend05/lecture2.pdf<br>
-https://mrl.nyu.edu/~dzorin/rend05/lecture1a.pdf<br>
-https://mrl.nyu.edu/~dzorin/rend05/<br>
+
