@@ -25,7 +25,7 @@ and then simulate the way that the light interacts with the virtual objects it u
 ## Installation
 1. Clone the repo:
 ```
-https://github.com/Xperaz/minirt.git
+https://github.com/SaidM96/Minirt42.git
 ```
 2. `cd` into it and `make bonus` to compile it:
 ```
